@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samar Kumar | Ethical Hacker, Cybersecurity & Analytics Specialist</title>
+    <title>Samar Kumar | Ethical Hacker, Cybersecurity, AI & Analytics Specialist</title>
     <!-- Tailwind CSS v4 Browser Script -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -102,6 +102,96 @@
         .pulse-glow {
             animation: pulseGlow 5s ease-in-out infinite;
         }
+
+        /* --- SMART ROBOT ASSISTANT STYLES (MOBILE & DESKTOP TUNED) --- */
+        #smart-robot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            pointer-events: none;
+        }
+
+        #robot-bubble {
+            max-width: 260px;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            font-size: 11.5px;
+            line-height: 1.45;
+            font-weight: 500;
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(12px) scale(0.95);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            pointer-events: auto;
+        }
+
+        #robot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 20px;
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: #0f172a transparent;
+            display: block;
+            width: 0;
+        }
+
+        #robot-bubble.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .robot-btn {
+            pointer-events: auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: robotFloat 3.5s ease-in-out infinite;
+        }
+
+        @media (min-width: 640px) {
+            #smart-robot-container {
+                bottom: 24px;
+                right: 24px;
+            }
+            .robot-btn {
+                width: 54px;
+                height: 54px;
+            }
+            #robot-bubble {
+                max-width: 280px;
+                font-size: 12px;
+            }
+        }
+
+        .robot-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.5);
+        }
+
+        @keyframes robotFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white">
@@ -113,50 +203,50 @@
 
     <header class="fixed top-0 left-0 right-0 z-40 glass border-b border-slate-200 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            <a href="#" onclick="switchTab('hero'); return false;" class="flex items-center gap-2 group cursor-pointer">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+            <a href="#" onclick="switchTab('hero'); return false;" data-robot-tip="logo" class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-shield-halved floating-icon inline-block"></i>
                 </div>
-                <span class="font-extrabold text-xl tracking-tight text-slate-900">Samar<span class="gradient-text">.com</span></span>
+                <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900">Samar<span class="gradient-text">.com</span></span>
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-                <button onclick="switchTab('about')" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="about"><i class="fa-solid fa-user text-xs"></i> About</button>
-                <button onclick="switchTab('certifications')" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="certifications"><i class="fa-solid fa-certificate text-xs"></i> Certifications</button>
-                <button onclick="switchTab('projects')" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="projects"><i class="fa-solid fa-code-branch text-xs"></i> Projects</button>
-                <button onclick="switchTab('skills')" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="skills"><i class="fa-solid fa-brain text-xs"></i> Skills</button>
-                <button onclick="switchTab('ai-assistant')" class="nav-btn hover:text-blue-600 transition-colors flex items-center gap-1.5 text-purple-600 font-semibold cursor-pointer" data-target="ai-assistant">
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-medium text-sm text-slate-600">
+                <button onclick="switchTab('about')" data-robot-tip="nav-about" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="about"><i class="fa-solid fa-user text-xs"></i> About</button>
+                <button onclick="switchTab('certifications')" data-robot-tip="nav-certifications" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="certifications"><i class="fa-solid fa-certificate text-xs"></i> Certifications</button>
+                <button onclick="switchTab('projects')" data-robot-tip="nav-projects" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="projects"><i class="fa-solid fa-code-branch text-xs"></i> Projects</button>
+                <button onclick="switchTab('skills')" data-robot-tip="nav-skills" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="skills"><i class="fa-solid fa-brain text-xs"></i> Skills</button>
+                <button onclick="switchTab('ai-assistant')" data-robot-tip="nav-ai" class="nav-btn hover:text-blue-600 transition-colors flex items-center gap-1.5 text-purple-600 font-semibold cursor-pointer" data-target="ai-assistant">
                     <i class="fa-solid fa-robot text-xs animate-bounce"></i> Ask Garbage AI
                 </button>
-                <button onclick="switchTab('contact')" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="contact"><i class="fa-solid fa-paper-plane text-xs"></i> Contact</button>
+                <button onclick="switchTab('contact')" data-robot-tip="nav-contact" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="contact"><i class="fa-solid fa-paper-plane text-xs"></i> Contact</button>
             </nav>
 
             <!-- Actions -->
             <div class="flex items-center gap-3">
-                <button onclick="switchTab('contact')" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all shadow-md hover:shadow-blue-500/25 min-h-[44px] cursor-pointer">
+                <button onclick="switchTab('contact')" data-robot-tip="connect-btn" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all shadow-md hover:shadow-blue-500/25 min-h-[44px] cursor-pointer">
                     Connect With Me <i class="fa-solid fa-arrow-right ml-2 transition-transform hover:translate-x-1"></i>
                 </button>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="md:hidden w-11 h-11 rounded-xl glass-card flex items-center justify-center text-slate-700 cursor-pointer">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 cursor-pointer">
+                    <i class="fa-solid fa-bars text-base"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 px-6 py-6 transition-all shadow-lg">
-            <div class="flex flex-col gap-4 font-medium text-slate-700">
-                <button onclick="switchTab('about'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2"><i class="fa-solid fa-user text-blue-600"></i> About</button>
-                <button onclick="switchTab('certifications'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2"><i class="fa-solid fa-certificate text-blue-600"></i> Certifications</button>
-                <button onclick="switchTab('projects'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2"><i class="fa-solid fa-code-branch text-blue-600"></i> Projects</button>
-                <button onclick="switchTab('skills'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2"><i class="fa-solid fa-brain text-blue-600"></i> Skills</button>
-                <button onclick="switchTab('ai-assistant'); toggleMobileMenu();" class="text-left py-2 text-purple-600 font-semibold flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-robot animate-bounce"></i> Ask Garbage AI
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 px-5 py-5 transition-all shadow-xl">
+            <div class="flex flex-col gap-3 font-medium text-slate-700 text-sm">
+                <button onclick="switchTab('about'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-user text-blue-600 w-4"></i> About</button>
+                <button onclick="switchTab('certifications'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-certificate text-blue-600 w-4"></i> Certifications & Awards</button>
+                <button onclick="switchTab('projects'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-code-branch text-blue-600 w-4"></i> Projects</button>
+                <button onclick="switchTab('skills'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-brain text-blue-600 w-4"></i> Skills</button>
+                <button onclick="switchTab('ai-assistant'); toggleMobileMenu();" class="text-left py-2 text-purple-600 font-semibold flex items-center gap-2.5 cursor-pointer">
+                    <i class="fa-solid fa-robot animate-bounce w-4"></i> Ask Garbage AI
                 </button>
-                <button onclick="switchTab('contact'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2"><i class="fa-solid fa-paper-plane text-blue-600"></i> Contact</button>
-                <button onclick="switchTab('contact'); toggleMobileMenu();" class="mt-2 text-center w-full py-3 rounded-xl bg-blue-600 text-white font-semibold cursor-pointer">
+                <button onclick="switchTab('contact'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-paper-plane text-blue-600 w-4"></i> Contact</button>
+                <button onclick="switchTab('contact'); toggleMobileMenu();" class="mt-2 text-center w-full py-3 rounded-xl bg-blue-600 text-white font-semibold cursor-pointer shadow-md">
                     Connect With Me
                 </button>
             </div>
@@ -165,62 +255,68 @@
 
     <main class="pt-16 sm:pt-20">
         <!-- Hero Section -->
-        <section id="hero" class="section-view active min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)] flex items-center justify-center py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-            <div class="absolute top-1/4 left-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-400/20 to-purple-400/20 rounded-full blur-3xl -z-10 pointer-events-none floating-orb"></div>
+        <section id="hero" class="section-view active min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)] flex items-center justify-center py-10 sm:py-16 lg:py-20 relative overflow-hidden">
+            <div class="absolute top-1/4 left-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-gradient-to-tr from-blue-400/20 to-purple-400/20 rounded-full blur-3xl -z-10 pointer-events-none floating-orb"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
                     
                     <!-- Left Hero Content -->
-                    <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left mt-8 lg:mt-0 order-2 lg:order-1 animate-fade-in-up">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border border-emerald-500/30 text-emerald-600 text-xs sm:text-sm font-semibold tracking-wide">
+                    <div class="lg:col-span-7 space-y-5 sm:space-y-8 text-center lg:text-left mt-4 lg:mt-0 order-2 lg:order-1 animate-fade-in-up">
+                        <div data-robot-tip="badge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border border-emerald-500/30 text-emerald-600 text-xs sm:text-sm font-semibold tracking-wide cursor-default">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                            Verified Ethical Hacker & Google Analytics Certified
+                            Verified Ethical Hacker, NASA ARSET & Google Certified
                         </div>
 
                         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-slate-900">
                             Securing systems & analyzing data with <span class="gradient-text">precision & AI</span>.
                         </h1>
 
-                        <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal">
-                            Hi, I'm <strong class="text-slate-900">Samar Kumar</strong>. Certified Ethical Hacker (Cisco Networking Academy), Cybersecurity Specialist, and Google Analytics Certified Professional with a passion for web development and digital security.
+                        <p class="text-sm sm:text-base lg:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Hi, I'm <strong class="text-slate-900">Samar Kumar</strong>. Certified Ethical Hacker (Cisco Networking Academy), NASA ARSET Remote Sensing Specialist, QuestUp AI Competitor, and Google Analytics Certified Professional with a passion for web development and digital security.
                         </p>
 
-                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                            <button onclick="switchTab('certifications')" class="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 min-h-[44px] cursor-pointer hover:scale-105 active:scale-95 duration-200">
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                            <button onclick="switchTab('certifications')" data-robot-tip="view-credentials" class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer hover:scale-105 active:scale-95 duration-200">
                                 View Credentials <i class="fa-solid fa-shield-halved text-xs floating-icon inline-block"></i>
                             </button>
-                            <button onclick="switchTab('contact')" class="px-7 py-3.5 rounded-xl glass-card hover:bg-slate-100 font-semibold transition-all min-h-[44px] flex items-center cursor-pointer hover:scale-105 active:scale-95 duration-200 text-slate-700">
+                            <button onclick="switchTab('contact')" data-robot-tip="get-in-touch" class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl glass-card hover:bg-slate-100 font-semibold transition-all min-h-[44px] flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 duration-200 text-slate-700">
                                 Get In Touch
                             </button>
                         </div>
 
                         <!-- Mini stats bar -->
-                        <div class="pt-8 border-t border-slate-200 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
-                            <div>
-                                <div class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1.5">
-                                    <i class="fa-solid fa-award text-blue-600 text-lg floating-icon"></i> Cisco
+                        <div class="pt-6 sm:pt-8 border-t border-slate-200 grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-4 max-w-xl mx-auto lg:mx-0">
+                            <div data-robot-tip="stat-cisco" class="cursor-pointer text-center lg:text-left">
+                                <div class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
+                                    <i class="fa-solid fa-award text-blue-600 text-base sm:text-lg floating-icon"></i> Cisco
                                 </div>
-                                <div class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Ethical Hacker</div>
+                                <div class="text-[9px] sm:text-xs lg:text-sm text-slate-500">Ethical Hacker</div>
                             </div>
-                            <div>
-                                <div class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1.5">
-                                    <i class="fa-solid fa-certificate text-purple-600 text-lg floating-icon"></i> Google
+                            <div data-robot-tip="stat-nasa" class="cursor-pointer text-center lg:text-left">
+                                <div class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
+                                    <i class="fa-solid fa-satellite text-amber-500 text-base sm:text-lg floating-icon"></i> NASA
                                 </div>
-                                <div class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Analytics Certified</div>
+                                <div class="text-[9px] sm:text-xs lg:text-sm text-slate-500">Remote Sensing</div>
                             </div>
-                            <div>
-                                <div class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1.5">
-                                    <i class="fa-solid fa-circle-check text-emerald-600 text-lg floating-icon"></i> 100%
+                            <div data-robot-tip="stat-google" class="cursor-pointer text-center lg:text-left">
+                                <div class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
+                                    <i class="fa-solid fa-certificate text-purple-600 text-base sm:text-lg floating-icon"></i> Google
                                 </div>
-                                <div class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Verified Credentials</div>
+                                <div class="text-[9px] sm:text-xs lg:text-sm text-slate-500">Analytics</div>
+                            </div>
+                            <div data-robot-tip="stat-questup" class="hidden sm:block cursor-pointer text-center lg:text-left">
+                                <div class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-slate-900 flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
+                                    <i class="fa-solid fa-trophy text-cyan-600 text-base sm:text-lg floating-icon"></i> AI Quiz
+                                </div>
+                                <div class="text-[9px] sm:text-xs lg:text-sm text-slate-500">QuestUp 2026</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Right Hero Profile Photo -->
                     <div class="lg:col-span-5 flex justify-center order-1 lg:order-2 animate-fade-in-up delay-200">
-                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+                        <div class="relative w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96" data-robot-tip="profile-photo">
                             <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-400 to-purple-500 rotate-6 opacity-30 blur-xl pulse-glow"></div>
                             
                             <div class="relative w-full h-full rounded-3xl overflow-hidden glass-card p-2 sm:p-3 border-2 border-slate-200 shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
@@ -229,14 +325,14 @@
                                      onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800'"
                                      class="w-full h-full object-cover rounded-2xl transition-all duration-500 hover:scale-105">
                                 
-                                <div class="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 p-2.5 sm:p-3 glass rounded-xl border border-white/40 shadow-lg flex items-center gap-2 sm:gap-3">
-                                    <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-emerald-500/20 text-emerald-600 flex items-center justify-center font-bold text-sm sm:text-lg">
+                                <div class="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-6 sm:left-6 sm:right-6 p-2 sm:p-3 glass rounded-xl border border-white/40 shadow-lg flex items-center gap-2 sm:gap-3">
+                                    <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-emerald-500/20 text-emerald-600 flex items-center justify-center font-bold text-xs sm:text-base">
                                         🛡️
                                     </div>
                                     <div>
                                         <div class="text-[10px] sm:text-xs font-semibold text-slate-900">Samar Kumar</div>
-                                        <div class="text-[10px] sm:text-xs text-slate-500 leading-tight flex items-center gap-1">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Ethical Hacking & Web Security
+                                        <div class="text-[9px] sm:text-xs text-slate-500 leading-tight flex items-center gap-1">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Ethical Hacking, AI & Remote Sensing
                                         </div>
                                     </div>
                                 </div>
@@ -248,16 +344,18 @@
             </div>
         </section>
 
-        <!-- Certifications Section -->
+        <!-- Certifications & Achievements Section -->
         <section id="certifications" class="section-view py-12 sm:py-16 lg:py-20 border-t border-slate-200 bg-slate-100/50 min-h-[calc(100vh-5rem)]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 animate-fade-in-up">
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-blue-600 mb-2 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-amber-500 animate-spin"></i> Verified Qualifications</h2>
-                    <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900">Official Certifications</p>
+                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-blue-600 mb-2 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-amber-500 animate-spin"></i> Verified Qualifications & Honors</h2>
+                    <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900">Official Certifications & Achievements</p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-100">
+                    
+                    <!-- Cisco Ethical Hacker -->
+                    <div data-robot-tip="cert-ethical-hacker" class="glass-card p-6 sm:p-8 rounded-3xl hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-100">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-600 border border-blue-500/20">Cisco Verified</span>
@@ -277,7 +375,8 @@
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-200">
+                    <!-- Cisco Intro to Cybersecurity -->
+                    <div data-robot-tip="cert-cybersecurity" class="glass-card p-6 sm:p-8 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-200">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">Cisco Verified</span>
@@ -297,7 +396,8 @@
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-300">
+                    <!-- Google Analytics -->
+                    <div data-robot-tip="cert-analytics" class="glass-card p-6 sm:p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up delay-300">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20">Google Certified</span>
@@ -316,6 +416,49 @@
                             <i class="fa-solid fa-circle-check animate-bounce"></i> Credential Verified
                         </div>
                     </div>
+
+                    <!-- NEW ACHIEVEMENT 1: NASA ARSET -->
+                    <div data-robot-tip="cert-nasa" class="glass-card p-6 sm:p-8 rounded-3xl hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 border border-amber-500/20">NASA Verified</span>
+                                <span class="text-xs text-slate-400">Aug 17, 2026[cite: 1]</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-4 floating-icon">
+                                <i class="fa-solid fa-satellite"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Fundamentals of Remote Sensing[cite: 1]</h3>
+                            <p class="text-xs font-semibold text-amber-600 mb-3">NASA Applied Remote Sensing Training (ARSET)[cite: 1]</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Awarded official completion by NASA's ARSET Program[cite: 1], mastering foundational satellite telemetry, geospatial data acquisition, electromagnetic spectrum principles, and Earth observation analytics.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center gap-2 text-xs font-semibold text-emerald-600">
+                            <i class="fa-solid fa-circle-check animate-bounce"></i> Official Certificate Awarded[cite: 1]
+                        </div>
+                    </div>
+
+                    <!-- NEW ACHIEVEMENT 2: QuestUp AI Quiz / Falcon Sphere -->
+                    <div data-robot-tip="cert-questup" class="glass-card p-6 sm:p-8 rounded-3xl hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between animate-fade-in-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-600 border border-cyan-500/20">Unstop & Falcon Sphere[cite: 2]</span>
+                                <span class="text-xs text-slate-400">2026[cite: 2]</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center text-2xl mb-4 floating-icon">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">QuestUp 2026: India's Biggest AI Quiz[cite: 2]</h3>
+                            <p class="text-xs font-semibold text-cyan-600 mb-3">Organised by Falcon Sphere (Unstop)[cite: 2]</p>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Certified participant in the nationwide competitive AI tournament "QuestUp 2026"[cite: 2], showcasing specialized knowledge in artificial intelligence paradigms, ML algorithms, and emerging intelligent system technologies.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center gap-2 text-xs font-semibold text-emerald-600">
+                            <i class="fa-solid fa-circle-check animate-bounce"></i> Certificate of Participation[cite: 2]
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -326,52 +469,52 @@
                 <div class="grid lg:grid-cols-2 gap-10 sm:gap-12 items-center">
                     <div class="space-y-5 sm:space-y-6 text-slate-600 leading-relaxed text-sm sm:text-base animate-fade-in-up">
                         <h2 class="text-xs font-extrabold uppercase tracking-widest text-blue-600 mb-2 flex items-center gap-2"><i class="fa-solid fa-user-shield text-blue-600"></i> About Samar Kumar</h2>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Cybersecurity Mindset with Data Analytics Precision</h3>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Cybersecurity Mindset, Remote Sensing & AI Analytics Precision</h3>
                         <p>
-                            I am <strong>Samar Kumar</strong>, a tech enthusiast driven by security, web analytics, and modern software development. My mission is to build digital solutions that are not only performant and insightful but also securely protected against evolving cyber threats.
+                            I am <strong>Samar Kumar</strong>, a tech enthusiast driven by security, geospatial data analytics, and modern software development. My mission is to build digital solutions that are performant, insightful, and securely protected against evolving cyber threats.
                         </p>
                         <p>
-                            Holding credentials in <strong>Ethical Hacking (Cisco)</strong>, <strong>Cybersecurity (Cisco)</strong>, and <strong>Google Analytics</strong>, I bridge the gap between secure system infrastructure and user-driven data intelligence.
+                            Holding credentials in <strong>Ethical Hacking (Cisco)</strong>, <strong>Cybersecurity (Cisco)</strong>, <strong>NASA ARSET Remote Sensing[cite: 1]</strong>, <strong>QuestUp AI Competition[cite: 2]</strong>, and <strong>Google Analytics</strong>, I bridge the gap between secure system infrastructure, intelligent telemetry, and user-driven data intelligence.
                         </p>
 
                         <div class="pt-4 flex items-center gap-4">
-                            <button onclick="switchTab('contact')" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors min-h-[44px] cursor-pointer hover:scale-105 active:scale-95 duration-200">
+                            <button onclick="switchTab('contact')" data-robot-tip="reach-out" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors min-h-[44px] cursor-pointer hover:scale-105 active:scale-95 duration-200">
                                 <i class="fa-solid fa-paper-plane"></i> Reach Out
                             </button>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-up delay-200">
-                        <div class="glass-card p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center text-xl mb-4 floating-icon">
+                        <div data-robot-tip="skill-pentest" class="glass-card p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 floating-icon">
                                 <i class="fa-solid fa-bug"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-900 mb-1">Pentesting</h3>
-                            <p class="text-sm text-slate-500">Methodological penetration testing & vulnerability assessment.</p>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-1">Pentesting</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Methodological penetration testing & vulnerability assessment.</p>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-xl mb-4 floating-icon">
+                        <div data-robot-tip="skill-analytics" class="glass-card p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 floating-icon">
                                 <i class="fa-solid fa-chart-pie"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-900 mb-1">Web Analytics</h3>
-                            <p class="text-sm text-slate-500">Google Analytics event tracking, telemetry, and reporting.</p>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-1">Web Analytics</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Google Analytics event tracking, telemetry, and conversion reporting.</p>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl mb-4 floating-icon">
-                                <i class="fa-solid fa-network-wired"></i>
+                        <div data-robot-tip="skill-remote-sensing" class="glass-card p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 floating-icon">
+                                <i class="fa-solid fa-satellite"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-900 mb-1">Network Security</h3>
-                            <p class="text-sm text-slate-500">Securing endpoints, wired/wireless networks, and cloud assets.</p>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-1">Remote Sensing[cite: 1]</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">NASA ARSET-trained satellite data analysis and Earth observation[cite: 1].</p>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl mb-4 floating-icon">
-                                <i class="fa-solid fa-code"></i>
+                        <div data-robot-tip="skill-ai-quiz" class="glass-card p-5 sm:p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 floating-icon">
+                                <i class="fa-solid fa-microchip"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-900 mb-1">Web Development</h3>
-                            <p class="text-sm text-slate-500">Creating responsive, interactive web applications.</p>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-1">AI Systems & ML[cite: 2]</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">QuestUp national AI competition-tested theoretical and practical AI[cite: 2].</p>
                         </div>
                     </div>
                 </div>
@@ -387,7 +530,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-100">
+                    <div data-robot-tip="project-vuln" class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-100">
                         <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-800">
                             <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800" 
                                  alt="Vulnerability Scanner Lab" 
@@ -406,7 +549,7 @@
                         </div>
                     </div>
 
-                    <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-200">
+                    <div data-robot-tip="project-ga4" class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-200">
                         <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-800">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" 
                                  alt="Analytics Dashboard" 
@@ -425,7 +568,7 @@
                         </div>
                     </div>
 
-                    <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-300">
+                    <div data-robot-tip="project-threat" class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col animate-fade-in-up delay-300">
                         <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-800">
                             <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800" 
                                  alt="Cybersecurity Threat Map" 
@@ -456,12 +599,13 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-100">
+                    <!-- Ethical Hacking -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-100">
                         <div class="flex items-center gap-3 mb-6">
                             <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-lg floating-icon">
                                 <i class="fa-solid fa-shield-cat"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900">Ethical Hacking</h3>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Ethical Hacking</h3>
                         </div>
                         <ul class="space-y-3 text-sm text-slate-600">
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600 text-xs"></i> Penetration Testing</li>
@@ -471,12 +615,13 @@
                         </ul>
                     </div>
 
-                    <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-200">
+                    <!-- Cybersecurity -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-200">
                         <div class="flex items-center gap-3 mb-6">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold text-lg floating-icon">
                                 <i class="fa-solid fa-lock"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900">Cybersecurity</h3>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Cybersecurity</h3>
                         </div>
                         <ul class="space-y-3 text-sm text-slate-600">
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600 text-xs"></i> Cyber Threat Analysis</li>
@@ -486,12 +631,13 @@
                         </ul>
                     </div>
 
-                    <div class="glass-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-300">
+                    <!-- Analytics & Web -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up delay-300">
                         <div class="flex items-center gap-3 mb-6">
                             <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center font-bold text-lg floating-icon">
                                 <i class="fa-solid fa-chart-line"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900">Analytics & Web</h3>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">Analytics & Web</h3>
                         </div>
                         <ul class="space-y-3 text-sm text-slate-600">
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 text-xs"></i> Google Analytics 4 (GA4)</li>
@@ -500,6 +646,39 @@
                             <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 text-xs"></i> Modern JS & Tailwind UI</li>
                         </ul>
                     </div>
+
+                    <!-- Remote Sensing & Geospatial Intelligence -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-lg floating-icon">
+                                <i class="fa-solid fa-satellite"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">NASA Remote Sensing[cite: 1]</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> Satellite Telemetry Processing[cite: 1]</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> Earth Observation Datasets[cite: 1]</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> Geospatial Sensor Fundamentals[cite: 1]</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> ARSET Program Trained[cite: 1]</li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Systems & Competition Benchmark -->
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center font-bold text-lg floating-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900">AI & Machine Learning[cite: 2]</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-600 text-xs"></i> QuestUp AI National Quiz Competitor[cite: 2]</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-600 text-xs"></i> Neural Networks & Machine Learning</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-600 text-xs"></i> Falcon Sphere AI Challenge[cite: 2]</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-600 text-xs"></i> LLM Assistant Implementation</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -513,17 +692,17 @@
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-4">Samar's AI Assistant</h2>
                     <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-xl mx-auto">
-                        Ask any questions about Samar Kumar's certifications, security skills, and Google Analytics background.
+                        Ask any questions about Samar Kumar's certifications, NASA Remote Sensing[cite: 1], QuestUp AI[cite: 2], and security skills.
                     </p>
                 </div>
 
-                <!-- Animated Widget Container -->
-                <div class="glass-card rounded-2xl p-2 sm:p-3 shadow-2xl border border-purple-500/30 max-w-3xl mx-auto animate-fade-in-up delay-200 transition-transform duration-500 hover:scale-[1.01]">
+                <!-- Clean Sharp Container -->
+                <div data-robot-tip="nav-ai" class="bg-white rounded-2xl p-2 sm:p-3 shadow-2xl border border-purple-500/30 max-w-3xl mx-auto animate-fade-in-up delay-200 transition-shadow duration-300 hover:shadow-purple-500/20">
                     <div class="w-full rounded-xl overflow-hidden bg-white shadow-inner" style="height: 480px;">
                         <iframe
                             src="https://www.chatbase.co/chatbot-iframe/iy9WQkuIAZIAlYc2W3Ada"
                             width="100%"
-                            style="height: 480px; border: none;"
+                            style="height: 480px; border: none; transform: translateZ(0);"
                             frameborder="0"
                             allow="microphone">
                         </iframe>
@@ -550,7 +729,7 @@
                                 </div>
                                 <div>
                                     <div class="text-xs text-slate-500 font-semibold uppercase">Email</div>
-                                    <div class="font-bold text-slate-900">Use Contact Form Below / Available Upon Request</div>
+                                    <div class="font-bold text-slate-900">samarkumar.3457@gmail.com</div>
                                 </div>
                             </div>
                         </div>
@@ -589,6 +768,14 @@
         </section>
     </main>
 
+    <!-- Floating Robot Guide Component -->
+    <div id="smart-robot-container">
+        <div id="robot-bubble">👋 Need help? Check the navigation bar above to jump across pages!</div>
+        <div class="robot-btn" id="smart-robot-btn" title="Click for guidance">
+            <i class="fa-solid fa-robot text-lg sm:text-xl text-white"></i>
+        </div>
+    </div>
+
     <footer class="py-8 border-t border-slate-200 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div>
@@ -605,8 +792,11 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Tab Switching Logic with Smooth Fade & Stagger Entry Animation
+        let currentActiveSection = 'hero';
+
+        // Tab Switching Logic
         function switchTab(targetId) {
+            currentActiveSection = targetId;
             const sections = document.querySelectorAll('.section-view');
             sections.forEach(section => {
                 section.classList.remove('active');
@@ -629,6 +819,10 @@
             });
 
             window.scrollTo(0, 0);
+
+            if (typeof triggerTabRobotTip === 'function') {
+                triggerTabRobotTip(targetId);
+            }
         }
 
         // Mobile Menu Toggle
@@ -655,7 +849,7 @@
             }, 3000);
         }
 
-        // Contact Form Submission via FormSubmit AJAX Service
+        // Contact Form Submission via FormSubmit AJAX
         document.getElementById('contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
@@ -695,6 +889,214 @@
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
             }
+        });
+
+        /* --- SMART ROBOT USER SCREEN, MOUSE & TOUCH TRACKING --- */
+        const robotBubble = document.getElementById('robot-bubble');
+        const robotBtn = document.getElementById('smart-robot-btn');
+        let scrollStopTimer;
+        let idleTimer;
+        let hideBubbleTimer;
+        let lastMessageShown = "";
+        let hoverCooldownTimer = null;
+
+        const tipDatabase = {
+            'view-credentials': [
+                "🛡️ Click here to view Samar's Cisco Ethical Hacker, NASA ARSET, QuestUp AI & Google credentials!",
+                "📜 Jump straight to verified certificates from NASA, Cisco, and Google!"
+            ],
+            'get-in-touch': [
+                "✉️ Want to discuss a project or security audit? Click here to send a direct message!",
+                "🤝 Ready to collaborate? Let's connect over cybersecurity, analytics, or development!"
+            ],
+            'nav-certifications': [
+                "📜 Click here to explore verified certifications from Cisco, NASA ARSET, and Falcon Sphere.",
+                "🎖️ Check out Samar's official qualifications in Remote Sensing, Ethical Hacking & Data Analytics!"
+            ],
+            'nav-projects': [
+                "💻 Inspect real vulnerability audits, threat mitigation reports, and GA4 telemetry work here!",
+                "🚀 Want to see hands-on cybersecurity and telemetry projects? Click right here."
+            ],
+            'nav-skills': [
+                "🧠 Browse technical matrix covering Kali Linux, NASA Remote Sensing, AI paradigms, and web tech.",
+                "⚡ Dive into core competencies across cybersecurity tools and front-end engineering."
+            ],
+            'nav-ai': [
+                "🤖 Chat live with Samar's AI to ask questions about skills, certificates, and background!",
+                "⚡ Ask Garbage AI anything about Samar Kumar right now!"
+            ],
+            'nav-about': [
+                "👤 Read about Samar's background in ethical hacking, remote sensing, and analytics precision.",
+                "📖 Discover Samar's journey across cybersecurity defense, satellite data, and telemetry."
+            ],
+            'nav-contact': [
+                "📬 Have a question or work inquiry? Reach out directly using this tab.",
+                "💬 Let's get in touch for security consulting or web projects!"
+            ],
+            'cert-ethical-hacker': [
+                "🥋 Cisco Certified Ethical Hacker: Covers penetration testing, vulnerability assessment, and exploit analysis.",
+                "🔐 Cisco credential validating rigorous methodology-driven vulnerability scanning and defense."
+            ],
+            'cert-cybersecurity': [
+                "🛡️ Cisco Intro to Cybersecurity: Covers cyber defense strategies, network mitigation, and threat analysis.",
+                "🌐 Verified knowledge in network security, threat mitigation, and safety protocols."
+            ],
+            'cert-analytics': [
+                "📊 Google Analytics Certified: Mastering event telemetry, user funnels, and data-driven insights.",
+                "📈 Validates end-to-end user tracking, telemetry, and analytics reporting skills."
+            ],
+            'cert-nasa': [
+                "🛰️ NASA ARSET Certified: Fundamentals of Remote Sensing & satellite telemetry processing.",
+                "🌍 Official certification from NASA's Applied Remote Sensing Training Program."
+            ],
+            'cert-questup': [
+                "🏆 QuestUp 2026 AI Quiz: Certified participant in India's biggest AI competition by Falcon Sphere.",
+                "🧠 Demonstrates verified competitive knowledge in AI and Machine Learning systems."
+            ],
+            'stat-cisco': [
+                "🏅 Cisco Networking Academy verified credential holder in Ethical Hacking.",
+                "🛡️ Cisco-certified in cybersecurity principles and offensive penetration testing."
+            ],
+            'stat-nasa': [
+                "🛰️ NASA ARSET certified in satellite telemetry and remote sensing.",
+                "🌍 Trained in NASA Earth observation data analytics."
+            ],
+            'stat-google': [
+                "📈 Google Analytics certified in traffic analysis and funnel optimization.",
+                "🔍 Certified by Google for comprehensive digital analytics and event pipelines."
+            ],
+            'stat-questup': [
+                "🏆 QuestUp 2026 AI Tournament participant via Falcon Sphere on Unstop.",
+                "🤖 Benchmarked in national artificial intelligence challenges."
+            ]
+        };
+
+        function getRandomNonRepeatingTip(key) {
+            const list = tipDatabase[key];
+            if (!list || list.length === 0) return null;
+            if (list.length === 1) return list[0];
+
+            const choices = list.filter(msg => msg !== lastMessageShown);
+            const selected = choices[Math.floor(Math.random() * choices.length)];
+            return selected || list[0];
+        }
+
+        function showRobotTip(message, duration = 5500) {
+            if (!message || message === lastMessageShown) return;
+            
+            lastMessageShown = message;
+            robotBubble.innerHTML = message;
+            robotBubble.classList.add('show');
+            
+            clearTimeout(hideBubbleTimer);
+            hideBubbleTimer = setTimeout(() => {
+                robotBubble.classList.remove('show');
+            }, duration);
+        }
+
+        // Mouse & Touch Tracking for Interactive Elements
+        document.querySelectorAll('[data-robot-tip]').forEach(elem => {
+            const handleTrigger = () => {
+                const tipKey = elem.getAttribute('data-robot-tip');
+                const message = getRandomNonRepeatingTip(tipKey);
+                if (message) {
+                    clearTimeout(hoverCooldownTimer);
+                    hoverCooldownTimer = setTimeout(() => {
+                        showRobotTip(message, 5000);
+                    }, 100);
+                }
+            };
+
+            elem.addEventListener('mouseenter', handleTrigger);
+            elem.addEventListener('touchstart', handleTrigger, { passive: true });
+        });
+
+        // Tab contextual tips
+        const sectionTips = {
+            'hero': [
+                "👋 Exploring Samar's portfolio? Check the <strong>navigation bar</strong> to see verified Cisco, NASA, and Google credentials!",
+                "🌟 Welcome! Jump across pages or examine verified credentials using the top menu."
+            ],
+            'certifications': [
+                "📜 Viewing verified certifications? Check out Samar's NASA Remote Sensing, Cisco Pentesting & Google credentials!",
+                "🎖️ Official credentials listed above. You can switch to Projects or Skills anytime."
+            ],
+            'about': [
+                "🔍 Reading Samar's background? Check out <strong>Ask Garbage AI</strong> in the top menu to ask questions live!",
+                "📖 Discover Samar's cybersecurity background, satellite analytics, and engineering mindset."
+            ],
+            'projects': [
+                "💻 Interested in security audits? Jump to the <strong>Contact</strong> section via the top menu to collaborate!",
+                "🛠️ Inspecting featured works? Head to Contact to start a conversation!"
+            ],
+            'skills': [
+                "🛠️ Reviewing technical proficiencies? Check out the live <strong>AI Assistant</strong> in the navigation bar above!",
+                "⚡ Technical matrix loaded with Ethical Hacking, NASA Remote Sensing & AI skills."
+            ],
+            'ai-assistant': [
+                "🤖 Have questions for Garbage AI? Ask anything about Samar's experience or credentials live!",
+                "⚡ Live AI engine ready. Type any question!"
+            ],
+            'contact': [
+                "✉️ Ready to send a message? Fill out the form or use the top menu to view more work.",
+                "📬 Send a direct message or collaborate on a cybersecurity audit!"
+            ]
+        };
+
+        function triggerTabRobotTip(tabId) {
+            setTimeout(() => {
+                if (sectionTips[tabId]) {
+                    const list = sectionTips[tabId];
+                    const selected = list[Math.floor(Math.random() * list.length)];
+                    showRobotTip(selected);
+                }
+            }, 700);
+        }
+
+        // Initial greeting
+        setTimeout(() => {
+            showRobotTip("👋 Welcome! Tap or hover over any credential or use the <strong>top navigation bar</strong> to explore.");
+        }, 1800);
+
+        // Scroll & Pause tracking
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollStopTimer);
+            clearTimeout(idleTimer);
+
+            scrollStopTimer = setTimeout(() => {
+                const list = sectionTips[currentActiveSection] || ["💡 Need more details? Check out the navigation bar at the top!"];
+                const selected = list[Math.floor(Math.random() * list.length)];
+                showRobotTip(selected);
+            }, 2500);
+        });
+
+        // Inactivity/Idle tracking
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                const idlePhrases = [
+                    "🤔 Unsure where to look? Jump between sections using the <strong>top navigation bar</strong>!",
+                    "💡 Hover or tap on any card to learn what it represents!",
+                    "⚡ Check out verified NASA and Cisco certificates in the Certifications tab!"
+                ];
+                const selected = idlePhrases[Math.floor(Math.random() * idlePhrases.length)];
+                showRobotTip(selected);
+            }, 14000);
+        }
+
+        window.addEventListener('mousemove', resetIdleTimer);
+        window.addEventListener('keydown', resetIdleTimer);
+        window.addEventListener('touchstart', resetIdleTimer, { passive: true });
+
+        // Click/tap on floating robot for tips
+        robotBtn.addEventListener('click', () => {
+            const clickPhrases = [
+                "🤖 Tip: Hover or tap on any achievement (like NASA ARSET or Cisco) to learn more!",
+                "🛡️ You can click any tab on the <strong>top navigation bar</strong> to jump to Certifications, Projects, or AI!",
+                "⚡ Have a question? You can ask Samar's custom AI anytime in the Ask Garbage AI tab!"
+            ];
+            const selected = clickPhrases[Math.floor(Math.random() * clickPhrases.length)];
+            showRobotTip(selected);
         });
     </script>
 </body>
