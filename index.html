@@ -241,8 +241,7 @@
                     <i class="fa-solid fa-robot text-xs animate-bounce"></i> Ask Garbage AI
                 </button>
                 <button onclick="switchTab('contact')" data-robot-tip="nav-contact" class="nav-btn hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1.5" data-target="contact"><i class="fa-solid fa-paper-plane text-xs"></i> Contact</button>
-                <!-- NEW COLLAB LINK ADDED HERE -->
-                <a href="liteapk.html" target="_blank" data-robot-tip="nav-collab" class="nav-btn hover:text-emerald-500 transition-colors cursor-pointer flex items-center gap-1.5 font-bold text-emerald-600"><i class="fa-solid fa-handshake text-xs animate-pulse"></i> LITEAPK Collab</a>
+                
             </nav>
 
             <!-- Actions -->
@@ -269,8 +268,7 @@
                     <i class="fa-solid fa-robot animate-bounce w-4"></i> Ask Garbage AI
                 </button>
                 <button onclick="switchTab('contact'); toggleMobileMenu();" class="text-left py-2 hover:text-blue-600 cursor-pointer flex items-center gap-2.5"><i class="fa-solid fa-paper-plane text-blue-600 w-4"></i> Contact</button>
-                <!-- NEW MOBILE COLLAB LINK ADDED HERE -->
-                <a href="liteapk.html" target="_blank" class="text-left py-2 hover:text-emerald-500 cursor-pointer flex items-center gap-2.5 font-bold text-emerald-600"><i class="fa-solid fa-handshake text-emerald-600 w-4"></i> LITEAPK Collab</a>
+                
                 <button onclick="switchTab('contact'); toggleMobileMenu();" class="mt-2 text-center w-full py-3 rounded-xl bg-blue-600 text-white font-semibold cursor-pointer shadow-md">
                     Connect With Me
                 </button>
@@ -926,9 +924,7 @@
         let hoverCooldownTimer = null;
 
         const tipDatabase = {
-            'nav-collab': [
-                "🤝 Click here to view the official SAMAR × LITEAPK partnership for secure mod distribution!",
-                "🚀 Check out the new collaboration page for malware-free, audited APKs."
+           
             ],
             'view-credentials': [
                 "🛡️ Click here to view Samar's Cisco Ethical Hacker, NASA ARSET, QuestUp AI & Google credentials!",
@@ -1084,7 +1080,7 @@
 
         // Initial greeting
         setTimeout(() => {
-            showRobotTip("👋 Welcome! Have you seen my new <strong>SAMAR × LITEAPK Collab</strong>? Click it in the navigation bar to explore!");
+           showRobotTip("👋 Welcome! Explore the navigation bar to discover my certifications, projects, and AI assistant!");
         }, 1800);
 
         // Scroll & Pause tracking
